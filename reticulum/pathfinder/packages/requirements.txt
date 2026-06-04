@@ -1,0 +1,10 @@
+(1) main-v2.2.py
+(2) .reticulum_transportInstance/
+(3) identity
+(4) id.txt
+(5) startIdentity
+(6) README.txt
+
+
+- Change id.txt
+- Change py file
