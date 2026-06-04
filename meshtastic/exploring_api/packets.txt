@@ -1,0 +1,335 @@
+'raw' fields are marked with # at start and end
+
+=======================================================================================================
+
+{
+    'from': 1130000388, 
+    'to': 4294967295, 
+    'decoded': {
+        'portnum': 'TELEMETRY_APP', 
+        'payload': b'\r\x16\xb0\xd5i2\x18\x08A\x15\xda@\xd7?\x1d\x82\x9a\xe5< \x01@\x04`\xd8\xf1\x0eh\x98\xfd\x06', 
+        'telemetry': {
+            'time': 1775611926, 
+            'localStats': {
+                'uptimeSeconds': 65, 
+                'channelUtilization': 1.6816666, 
+                'airUtilTx': 0.028027777, 
+                'numPacketsTx': 1, 
+                'numTotalNodes': 4, 
+                'heapTotalBytes': 243928, 
+                'heapFreeBytes': 114328
+                }, 
+            'raw': #time: 1775611926
+local_stats {
+  uptime_seconds: 65
+  channel_utilization: 1.68166661
+  air_util_tx: 0.0280277766
+  num_packets_tx: 1
+  num_total_nodes: 4
+  heap_total_bytes: 243928
+  heap_free_bytes: 114328
+}#
+            }
+    }, 
+    'id': 690995709, 
+    'hopLimit': 3, 
+    'priority': 'BACKGROUND', 
+    'raw': #from: 1130000388
+to: 4294967295
+decoded {
+  portnum: TELEMETRY_APP
+  payload: "\r\026\260\325i2\030\010A\025\332@\327?\035\202\232\345< \001@\004`\330\361\016h\230\375\006"
+}
+id: 690995709
+hop_limit: 3
+priority: BACKGROUND,# 
+    'fromId': '!435a7004', 
+    'toId': '^all'
+}
+
+-------------------------------------------------------------------------------------------------------
+Presence of 'decoded' field: Our node has the decryption key. We are able to read it. Our node is on the same channel as the sender.
+'from': 1130000388, or 'fromId': '!435a7004', and lack of SNR/RSSI fields, likely means this message was sent out by our node.
+'to': 4294967295, or 'toId': '^all', means this message was broadcasted out to all nodes.
+'decoded' > 'portnum': 'TELEMTERY_APP', means this is a telemetry packet
+                                   
+=======================================================================================================
+
+{
+    'from': 2026395066, 
+    'to': 4294967295, 
+    'channel': 148, 
+    'encrypted': 'xSOektZt7kUITmcLnJ7GEQ==', 
+    'id': 2091739972, 
+    'rxSnr': 6.5, 
+    'hopLimit': 2, 
+    'rxRssi': -12, 
+    'hopStart': 3, 
+    'relayNode': 92, 
+    'transportMechanism': 
+    'TRANSPORT_LORA', 'raw': #from: 2026395066
+to: 4294967295
+channel: 148
+encrypted: "\305#\236\222\326m\356E\010Ng\013\234\236\306\021"
+id: 2091739972
+rx_snr: 6.5
+hop_limit: 2
+rx_rssi: -12
+hop_start: 3
+relay_node: 92
+transport_mechanism: TRANSPORT_LORA#,
+    'fromId': None, 
+    'toId': '^all'
+    }
+
+-------------------------------------------------------------------------------------------------------
+'encrypted' indicates that our node is unable to decrypt the message (hence also a lack of 'decoded' field).
+'channel': 148 tells us the message was transmitted over channel 148
+                                   
+=======================================================================================================
+
+{
+    'from': 1130014044, 
+    'to': 1129974772, 
+    'decoded': {
+        'portnum': 'ROUTING_APP', 
+        'payload': b'\x18\x00', 
+        'requestId': 1148924281, 
+        'bitfield': 0, 
+        'routing': {
+            'errorReason': 'NONE', 
+            'raw': #error_reason: NONE#
+            }
+        },
+    'id': 3979867345, 
+    'rxTime': 1775618220, 
+    'rxSnr': 6.25, 
+    'hopLimit': 2, 
+    'rxRssi': -37, 
+    'hopStart': 2, 
+    'relayNode': 92, 
+    'transportMechanism': 'TRANSPORT_LORA', 
+    'raw': #from: 1130014044
+to: 1129974772
+decoded {
+  portnum: ROUTING_APP
+  payload: "\030\000"
+  request_id: 1148924281
+  bitfield: 0
+}
+id: 3979867345
+rx_time: 1775618220
+rx_snr: 6.25
+hop_limit: 2
+rx_rssi: -37
+hop_start: 2
+relay_node: 92
+transport_mechanism: TRANSPORT_LORA#, 
+    'fromId': '!435aa55c', 
+    'toId': '!435a0bf4'}
+
+-------------------------------------------------------------------------------------------------------
+'portnum': 'ROUTING_APP'
+                                   
+=======================================================================================================
+
+{
+    'from': 3734886934, 
+    'to': 4294967295, 
+    'decoded': {
+        'portnum': 'POSITION_APP', 
+        'payload': b'\r\x00\x00\xc4\x00\x15\x00\x00\xdc=\x18\n%k\xc5\xd5i(\x03x\x00\x80\x01\x00\xb8\x01\r', 
+        'position': {
+            'latitudeI': 12845056, 
+            'longitudeI': 1037828096, 
+            'altitude': 10, 
+            'time': 1775617387, 
+            'locationSource': 'LOC_EXTERNAL', 
+            'groundSpeed': 0, 
+            'groundTrack': 0, 
+            'precisionBits': 13, 
+            'raw': #latitude_i: 12845056
+longitude_i: 1037828096
+altitude: 10
+time: 1775617387
+location_source: LOC_EXTERNAL
+ground_speed: 0
+ground_track: 0
+precision_bits: 13#, 
+            'latitude': 1.2845056, 
+            'longitude': 103.7828096
+            }
+        }, 
+            'id': 3205614747, 
+            'rxTime': 1775617410, 
+            'rxSnr': 6.25, 
+            'hopLimit': 1, 
+            'rxRssi': -14, 
+            'hopStart': 5, 
+            'relayNode': 92, 
+            'transportMechanism': 'TRANSPORT_LORA', 
+            'raw': #from: 3734886934
+to: 4294967295
+decoded {
+  portnum: POSITION_APP
+  payload: "\r\000\000\304\000\025\000\000\334=\030\n%k\305\325i(\003x\000\200\001\000\270\001\r"
+}
+id: 3205614747
+rx_time: 1775617410
+rx_snr: 6.25
+hop_limit: 1
+rx_rssi: -14
+hop_start: 5
+relay_node: 92
+transport_mechanism: TRANSPORT_LORA#, 
+    'fromId': '!de9dda16', 
+    'toId': '^all'
+    }
+
+-------------------------------------------------------------------------------------------------------
+'portnum': 'POSITION_APP'
+                                   
+=======================================================================================================
+
+{
+    'from': 1130120584, 
+    'to': 4294967295, 
+    'decoded': {
+        'portnum': 'RANGE_TEST_APP', 
+        'payload': b'seq 89', 
+        'bitfield': 0, 
+        'text': 'seq 89'
+        }, 
+    'id': 2755574329, 
+    'rxSnr': 6.5, 
+    'rxRssi': -21, 
+    'transportMechanism': 'TRANSPORT_LORA', 
+    'raw': #from: 1130120584
+to: 4294967295
+decoded {
+  portnum: RANGE_TEST_APP
+  payload: "seq 89"
+  bitfield: 0
+}
+id: 2755574329
+rx_snr: 6.5
+rx_rssi: -21
+transport_mechanism: TRANSPORT_LORA#, 
+    'fromId': '!435c4588', 
+    'toId': '^all'
+    }
+
+-------------------------------------------------------------------------------------------------------
+'portnum': 'RANGE_TEST_APP'
+                                   
+=======================================================================================================
+
+{
+    'from': 1130000388, 
+    'to': 1129974772, 
+    'decoded': {
+        'portnum': 'TEXT_MESSAGE_APP', 
+        'payload': b' this is text msg', 
+        'bitfield': 0, 
+        'text': ' this is text msg'
+        }, 
+    'id': 952780952, 
+    'rxTime': 1775623421, 
+    'rxSnr': 6.75, 
+    'hopLimit': 3, 
+    'wantAck': True, 
+    'rxRssi': -8, 
+    'hopStart': 3, 
+    'publicKey': '7r9OLIkVmwy2Inu2pFLjLCjgEKcjxSbMa/PvBx9KDV8=', 
+    'pkiEncrypted': True, 
+    'nextHop': 244, 
+    'relayNode': 4, 
+    'transportMechanism': 'TRANSPORT_LORA', 
+    'raw': #from: 1130000388
+to: 1129974772
+decoded {
+  portnum: TEXT_MESSAGE_APP
+  payload: " this is text msg"
+  bitfield: 0
+}
+id: 952780952
+rx_time: 1775623421
+rx_snr: 6.75
+hop_limit: 3
+want_ack: true
+rx_rssi: -8
+hop_start: 3
+public_key: "\356\277N,\211\025\233\014\266\"{\266\244R\343,(\340\020\247#\305&\314k\363\357\007\037J\r_"
+pki_encrypted: true
+next_hop: 244
+relay_node: 4
+transport_mechanism: TRANSPORT_LORA#, 
+    'fromId': '!435a7004', 
+    'toId': '!435a0bf4'
+    }
+
+-------------------------------------------------------------------------------------------------------
+'portnum': 'TEXT_MESSAGE_APP'
+                                   
+=======================================================================================================
+
+{
+    'from': 1129974772, 
+    'to': 1130000388, 
+    'decoded': {
+        'portnum': 'PRIVATE_APP', 
+        'payload': b'DAATTAAAA', 
+        'bitfield': 0
+        }, 
+    'id': 2127407446, 
+    'rxSnr': 6.0, 
+    'hopLimit': 3, 
+    'wantAck': True, 
+    'hopStart': 3, 
+    'publicKey': 'D9T+06c3FmVTuatlm9mBhCks0oTWWVN0n4SiN84khXM=', 
+    'pkiEncrypted': True, 
+    'relayNode': 244, 
+    'transportMechanism': 'TRANSPORT_LORA', 
+    'raw': #from: 1129974772
+to: 1130000388
+decoded {
+  portnum: PRIVATE_APP
+  payload: "DAATTAAAA"
+  bitfield: 0
+}
+id: 2127407446
+rx_snr: 6
+hop_limit: 3
+want_ack: true
+hop_start: 3
+public_key: "\017\324\376\323\2477\026eS\271\253e\233\331\201\204),\322\204\326YSt\237\204\2427\316$\205s"
+pki_encrypted: true
+relay_node: 244
+transport_mechanism: TRANSPORT_LORA#, 
+    'fromId': '!435a0bf4', 
+    'toId': '!435a7004'
+    }
+
+-------------------------------------------------------------------------------------------------------
+'portnum': 'PRIVATE_APP'
+                                   
+=======================================================================================================
+Portnums Available:
+POSITION_APP
+ROUTING_APP
+TELEMETRY_APP
+RANGE_TEST_APP
+TEXT_MESSAGE_APP
+PRIVATE_APP
+(If encrypted, will not be able to tell)
+=======================================================================================================
+(see packets.json)
+-------------------------------------------------------------------------------------------------------
+Packet
+├── Radio metadata (BLE, RSSI, MAC, timestamp)
+└── odid
+    ├── basic_id[]
+    ├── location    
+    ├── system       
+    └── operator_id                                 
+=======================================================================================================

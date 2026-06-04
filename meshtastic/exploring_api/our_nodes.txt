@@ -1,0 +1,46 @@
+Connection name = ShortName + Last 4 of MAC address (???)
+User ID is hex representation of Node Number (decimal)
+
+-------------------------------------------------------------------------
+
+LongName: Char Kuay Teow 1
+ShortName: CKT1
+NodeNum: 1130000388
+UserId: !435a7004
+MAC Address: SMpDWnAE
+Connection Name: 
+
+LongName: Char Kuay Teow 2
+ShortName: CKT2
+NodeNum: 1129974772
+UserId: !435a0bf4
+MAC Address:
+Connection Name: CKT2_0bf4
+
+LongName: Char Kuay Teow 3
+ShortName: CKT3
+NodeNum: 1130014044
+UserId: !435aa55c
+MAC Address:
+Connection Name: CKT3_a55c
+
+LongName: Char Kuay Teow 4
+ShortName: CKT4
+NodeNum: 1130120584
+UserId: !435c4588
+MAC Address:
+Connection Name: CKT4_4588
+
+LongName: Char Kuay Teow 5
+ShortName: CKT5
+NodeNum: 1130000500
+UserId: !435a7074
+MAC Address:
+Connection Name: CKT5_7074
+
+LongName: Bak Chor Mee 1
+ShortName: BCM1
+NodeNum: 
+UserId: !435aa33c
+MAC Address:
+Connection Name: BCM1_a33c

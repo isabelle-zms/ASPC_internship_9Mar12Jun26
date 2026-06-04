@@ -1,0 +1,46 @@
+help(meshtastic.xxx_interface)
+iface, short for interface, is a connection. Commands are sent to the node through iface.
+serial, ble, tcp _interface depending on how node is connected to computer.
+Do not use Mesh or Stream Interface; those are the parent classes
+showNodes, sendHeartbeat might be useful
+
+help(meshtastic.node.Node)
+Instantiated when creating interface. Not to be created by user.
+A node is passive. It does not send any commands. This is done through the iface.
+beginSettingsTransaction, commitSettingsTransaction, getMetadata
+
+help(meshtastic.powermon.power_supply.PowerMeter)
+Seems outdated. Can try to find voltage of battery in Node object?
+Records power consumption. Does it need hardware? Test.
+get_average_current_mA
+
+help(meshtastic.analysis)
+Not installed in meshtastic module, as it is used for post-processing (can be found on GitHub). Upload a json file of packets to be processed.
+Could have some potential.
+
+help(meshtastic.remote_hardware)
+To communicate with remote hardware (sensors/actuators) connected via GPIO (general purpose input/output) pins. Some boards have free GPIO pins to use.
+Might be useful, attach LED indicators, or sensors for dynamic behaviour.
+
+help(meshtastic.test)
+Tests 2 nodes connected serially.
+interfaces (global var, list of packets rcv-ed), functions similar to xxx_interface
+
+help(meshtastic.tests)
+A collection of tests (e.g., smoke tests)
+To explore nearer to completion
+
+help(meshtastic.tunnel)
+Builds a virtual IP network by assigning an IP address to each node. Useful when networking is involved. Otherwise, packets can be sent directly through serial port.
+
+help(meshtastic.util)
+Convenient supporting functions, like a toolkit
+Look here for some useful functions :)
+
+
+Other modules: .version, .protobuf, .slog, .mt_config, .supported_device
+.protobuf (protocol buffer) is used to parse packets.
+.slog (sturctured logging) is meshtastic's internal structure for logging.
+.mt_config is a container for global variables.
+.connection cannot be accessed directly
+.supported_device helps to detect devices available, called by xxx_interface automatically

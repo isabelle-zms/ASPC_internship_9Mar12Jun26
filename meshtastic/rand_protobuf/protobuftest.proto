@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+message DronePacket {
+    string id = 1;
+    repeated int32 lat_long = 2;
+    int32 battery_voltage = 3;
+    
+    Model model = 4;
+
+    enum Model {
+        MODEL_DJI_MINI = 0;
+        MODEL_DJI_INSPIRE3  = 1;
+        MODEL_XIAOMI = 2;
+    }
+}

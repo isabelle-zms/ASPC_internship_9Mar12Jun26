@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+message Packet {
+  int32 packet_id = 1;
+  string proto = 2;
+  string mac = 3;
+  double timestamp = 4;
+  int32 rssi_dbm = 5;
+  int32 channel = 6;
+  uint64 ts_us = 7;
+  bool complete = 8;
+  bool first_full = 9;
+
+  ODID odid = 10;
+}
+
+message ODID {
+  repeated BasicID basic_id = 1;
+  Location location = 2;
+  System system = 3;
+  OperatorID operator_id = 4;
+}
+
+message BasicID {
+  int32 index = 1;
+  int32 ua_type = 2;
+  int32 id_type = 3;
+  string uas_id = 4;
+}
+
+message Location {
+  int32 status = 1;
+  double lat = 2;
+  double lon = 3;
+  float alt_geo_m = 4;
+  float alt_baro_m = 5;
+  float height_m = 6;
+  float speed_h_mps = 7;
+  float speed_v_mps = 8;
+  float dir_deg = 9;
+  float timestamp_s = 10;
+}
+
+message System {
+  float operator_lat = 1;
+  float operator_lon = 2;
+  float area_radius_m = 3;
+  float area_ceiling_m = 4;
+  float area_floor_m = 5;
+  float operator_alt_geo_m = 6;
+}
+
+message OperatorID {
+  string operator_id = 1;
+}

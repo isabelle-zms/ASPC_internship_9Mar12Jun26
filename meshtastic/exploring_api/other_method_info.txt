@@ -1,0 +1,145 @@
+==================================================================================
+Node.showInfo()
+- channel info & URLs
+- lora settings
+----------------------------------------------------------------------------------
+
+Requesting channel 0 info from remote node (this could take a while)
+Requesting channel 1 info from remote node (this could take a while)
+Requesting channel 2 info from remote node (this could take a while)
+Requesting channel 3 info from remote node (this could take a while)
+Requesting channel 4 info from remote node (this could take a while)
+Requesting channel 5 info from remote node (this could take a while)
+Requesting channel 6 info from remote node (this could take a while)
+Requesting channel 7 info from remote node (this could take a while)
+Preferences: {
+  "version": 0
+}
+
+Module preferences: {
+  "version": 0
+}
+
+Channels:
+  Index 0: PRIMARY psk=default { "psk": "AQ==", "moduleSettings": { "positionPrecision": 13, "isMuted": false }, "channelNum": 0, "name": "", "id": 0, "uplinkEnabled": false, "downlinkEnabled": false }
+  Index 1: SECONDARY psk=secret { "psk": "zCSV02JE5mdEvUMHYmDXbWUIzmiek63L0lGplQ7OmiE=", "name": "cktgang", "moduleSettings": { "positionPrecision": 32, "isMuted": false }, "channelNum": 0, "id": 0, "uplinkEnabled": false, "downlinkEnabled": false }
+Requesting current config from remote node (this can take a while).
+
+lora:
+use_preset: true
+bandwidth: 250
+spread_factor: 11
+coding_rate: 5
+region: SG_923
+hop_limit: 3
+tx_enabled: true
+tx_power: 20
+sx126x_rx_boosted_gain: true
+
+
+Primary channel URL: https://meshtastic.org/e/#CgcSAQE6AggNEhMIARj6ASALKAU4EkADSAFQFGgB
+Complete URL (includes all channels): https://meshtastic.org/e/#CgcSAQE6AggNCi8SIMwkldNiROZnRL1DB2Jg121lCM5onpOty9JRqZUOzpohGgdja3RnYW5nOgIIIBITCAEY-gEgCygFOBJAA0gBUBRoAQ
+
+==================================================================================
+Node.getMetadata()
+- version
+- role
+- model
+----------------------------------------------------------------------------------
+
+Requesting channel 0 info from remote node (this could take a while)
+Requesting channel 1 info from remote node (this could take a while)
+Requesting channel 2 info from remote node (this could take a while)
+Requesting channel 3 info from remote node (this could take a while)
+Requesting channel 4 info from remote node (this could take a while)
+Requesting channel 5 info from remote node (this could take a while)
+Requesting channel 6 info from remote node (this could take a while)
+Requesting channel 7 info from remote node (this could take a while)
+
+firmware_version: 2.7.10.94d4bdf
+device_state_version: 24
+role: CLIENT
+position_flags: ['ALTITUDE', 'ALTITUDE_MSL', 'DOP', 'SATINVIEW', 'HEADING', 'SPEED']
+hw_model: LILYGO_TBEAM_S3_CORE
+hasPKC: True
+excluded_modules: ['REMOTEHARDWARE_CONFIG', 'AMBIENTLIGHTING_CONFIG']
+
+==================================================================================
+dir(Node.localConfig)
+----------------------------------------------------------------------------------
+Requesting channel 0 info from remote node (this could take a while)
+Requesting channel 1 info from remote node (this could take a while)
+Requesting channel 2 info from remote node (this could take a while)
+Requesting channel 3 info from remote node (this could take a while)
+Requesting channel 4 info from remote node (this could take a while)
+Requesting channel 5 info from remote node (this could take a while)
+Requesting channel 6 info from remote node (this could take a while)
+Requesting channel 7 info from remote node (this could take a while)
+['ByteSize', 'Clear', 'ClearExtension', 'ClearField', 'CopyFrom', 'DESCRIPTOR', 'DiscardUnknownFields', 'FindInitializationErrors', 'FromString', 'HasExtension', 'HasField', 'IsInitialized', 'ListFields', 'MergeFrom', 'MergeFromString', 'ParseFromString', 'SerializePartialToString', 'SerializeToString', 'SetInParent', 'UnknownFields', 'WhichOneof', '_CheckCalledFromGeneratedFile', '_ListFieldsItemKey', '_SetListener', '__class__', '__contains__', '__deepcopy__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__slots__', '__str__', '__subclasshook__', '__unicode__', 'bluetooth', 'device', 'display', 'lora', 'network', 'position', 'power', 'security', 'version']
+
+
+==================================================================================
+print(SerialInterface.getMyNodeInfo())
+----------------------------------------------------------------------------------
+{
+  'num': 1130000388, 
+  'user': {
+    'id': '!435a7004', 
+    'longName': 'Char Kway Teow 1', 
+    'shortName': 'CKT1', 
+    'macaddr': 'SMpDWnAE', 
+    'hwModel': 'LILYGO_TBEAM_S3_CORE', 
+    'publicKey': '7r9OLIkVmwy2Inu2pFLjLCjgEKcjxSbMa/PvBx9KDV8=', 
+    'isUnmessagable': False
+    }, 
+  'position': {
+    }, 
+  'deviceMetrics': {
+    'batteryLevel': 101, 
+    'voltage': 4.014, 
+    'channelUtilization': 2.7483332, 
+    'airUtilTx': 0.051500004, 
+    'uptimeSeconds': 128}, 
+    'isFavorite': True
+  }
+==================================================================================
+print(SerialInterface.DESCRIPTOR.fields_by_name.keys())
+print(SerialInterface.lora.DESCRIPTOR.fields_by_name.keys())
+for field_name in SerialInterface.lora.DESCRIPTOR.fields_by_name.keys():
+    value = getattr(SerialInterface.lora, field_name)
+    print(field_name, "=", value)
+----------------------------------------------------------------------------------
+['device', 'position', 'power', 'network', 'display', 'lora', 'bluetooth', 'version', 'security']
+['use_preset', 'modem_preset', 'bandwidth', 'spread_factor', 'coding_rate', 'frequency_offset', 'region', 'hop_limit', 'tx_enabled', 'tx_power', 'channel_num', 'override_duty_cycle', 'sx126x_rx_boosted_gain', 'override_frequency', 'pa_fan_disabled', 'ignore_incoming', 'ignore_mqtt', 'config_ok_to_mqtt']
+use_preset = False
+modem_preset = 0
+bandwidth = 0
+spread_factor = 0
+coding_rate = 0
+frequency_offset = 0.0
+region = 0
+hop_limit = 0
+tx_enabled = False
+tx_power = 0
+channel_num = 0
+override_duty_cycle = False
+sx126x_rx_boosted_gain = False
+override_frequency = 0.0
+pa_fan_disabled = False
+ignore_incoming = []
+ignore_mqtt = False
+config_ok_to_mqtt = False
+
+==================================================================================
+
+----------------------------------------------------------------------------------
+
+==================================================================================
+
+----------------------------------------------------------------------------------
+
+==================================================================================
+
+----------------------------------------------------------------------------------
+
+==================================================================================
