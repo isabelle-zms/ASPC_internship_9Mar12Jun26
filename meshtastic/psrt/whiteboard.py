@@ -1,6 +1,5 @@
 import meshtastic
 import meshtastic.serial_interface
-import meshtastic.ble_interface
 from pubsub import pub
 import argparse
 import time
@@ -23,31 +22,32 @@ def log_line(line, interface):
     print(line)
 
 def server():
-    iface = meshtastic.serial_interface.SerialInterface("/dev/ttyACM0")
 
+    iface = meshtastic.serial_interface.SerialInterface("/dev/cu.usbmodem48CA435A45C41")
     print(iface.getMyNodeInfo()['user']['id'])
     print("[SERVER] Listening...")
 
-    pub.subscribe(on_receive, "meshtastic.receive.text")
+    pub.subscribe(on_receive, "meshtastic.receive.data")
 
     while True:
         time.sleep(1)
 
 def client():
-    iface = meshtastic.serial_interface.SerialInterface("/dev/ttyACM1")
+    iface = meshtastic.serial_interface.SerialInterface("/dev/cu.usbmodem48CA435AA55C1")
     pub.subscribe(log_line, "meshtastic.log.line")
 
+    target = '!1ba677f4'  # None = broadcast to all nodes
 
     counter = 0
 
     print("[CLIENT] Sending Hello...")
 
     while True:
-        # message = f"{counter}xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-        time.sleep(15)  
-        # iface.sendText(message, destinationId='!435a0bf4')
-        # print(f"[CLIENT] Sent {message}")
-        # counter += 1
+        message = str(counter).encode('utf-8')
+        time.sleep(2)  
+        iface.sendData(data=message, destinationId='!435a45c4')
+        print(f"[CLIENT] Sent {message}")
+        counter += 1
 
 if __name__ == "__main__":
     try:

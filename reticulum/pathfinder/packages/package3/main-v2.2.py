@@ -164,7 +164,7 @@ def send_hello_to_dest(dest_h):
 def intermediate_node(configpath):
     global identity
     reticulum = RNS.Reticulum(configpath)
-    identity = RNS.Identity.from_file("/opt/rns_pathfinder/package3/transport_identity")
+    identity = RNS.Identity.from_file("/opt/rns_pathfinder/package3/identity")
     transport_destination = RNS.Destination(
         identity,
         RNS.Destination.IN,

@@ -18,8 +18,7 @@ import bridpacket_ts_pb2
 
 
 # define variables
-with open('bridpackets_ts.json', 'r') as f:
-    PAYLOAD_DATA_NO_TS_ID = json.load(f)
+PAYLOAD_DATA_NO_TS_ID = json.load(open('bridpackets_ts.json', 'r'))
 FIELDNAMES = [
     "packet_id",
     "snr_db",
@@ -33,11 +32,11 @@ FIELDNAMES = [
 ##########################################################
 
 
-def server(csv_file):
+def server(serial_path, csv_file):
     # Connect to interface
-    ifaceServer = meshtastic.serial_interface.SerialInterface("/dev/ttyACM0")
+    ifaceServer = meshtastic.serial_interface.SerialInterface(serial_path)
     print(f"[INFO] Server interface connected with node ID {ifaceServer.getMyNodeInfo()['user']['id']}. Listening for packets ... Hit enter to reset packet count (Ctrl+C to quit)")
-
+    
     # Open file once, and write a header if the file is empty
     f = open(csv_file, "a", newline="")
     writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
@@ -82,18 +81,21 @@ def log_packet(brid_packet, meshtastic_packet, rx_time, csv_file, writer):
 ##########################################################
 
 
-def client(server_nodeid, interval=None):
-    ifaceClient = meshtastic.serial_interface.SerialInterface("/dev/ttyACM1")
-    pub.subscribe(log_line, "meshtastic.log.line")
-    print(f"[INFO] Client interface connected.")
+def client(serial_path, server_nodeid, interval=None):
+    ifaceClient = meshtastic.serial_interface.SerialInterface(serial_path)
+    print(f"[INFO] Client interface connected on {serial_path}")
    
     print(f"[INFO] Starting transmission of BRID packets at {interval}s intervals (Ctrl+C to quit)")
     packet_count = 1
     while True:
-        ifaceClient.sendData(generate_brid_packet_ts(packet_count), server_nodeid)
-        print(f"[INFO] BRID packet sent to node {server_nodeid}")
-        packet_count += 1
-        time.sleep(interval)
+        try: 
+            ifaceClient.sendData(generate_brid_packet_ts(packet_count), server_nodeid)
+            print(f"[INFO] BRID packet sent to node {server_nodeid}")
+            packet_count += 1
+            time.sleep(interval)
+        except KeyboardInterrupt:
+            print(f"[INFO] Closing interface.")
+            ifaceClient.close()
 
 
 def generate_brid_packet_ts(packet_id: int) -> bytes:
@@ -105,9 +107,6 @@ def generate_brid_packet_ts(packet_id: int) -> bytes:
     packet_bytes = packet_pb.SerializeToString()
     return packet_bytes
 
-
-def log_line(line, interface):
-    print(line)
       
 ##########################################################
 #### Program Startup #####################################
@@ -134,6 +133,14 @@ if __name__ == "__main__":
            type=float
        )
 
+
+       parser.add_argument(
+           "--port",
+           required=True,
+           help="Serial port e.g. /dev/ttyACM1",
+           type=str
+       )
+
        parser.add_argument(
            "--csv_file",
            default='brid_packets_meshtastic.csv',
@@ -152,12 +159,14 @@ if __name__ == "__main__":
 
        args = parser.parse_args()
 
+       port = args.port
+
        if args.client == True:
             server_nodeid = args.destination
             interval = args.interval
-            client(server_nodeid, interval)
+            client(port, server_nodeid, interval)
        else:
-            server(args.csv_file)
+            server(port, args.csv_file)
 
 
    except KeyboardInterrupt:

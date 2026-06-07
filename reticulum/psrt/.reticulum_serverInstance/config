@@ -130,7 +130,7 @@
 
     # Serial port for the device
     # No error displayed if port is wrong
-    port = /dev/ttyACM0
+    port = /dev/cu.usbmodem101
 
     # Set frequency to 867.2 MHz
     frequency = 867200000

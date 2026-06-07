@@ -127,7 +127,7 @@
     enabled = Yes
 
     # Serial port for the device
-    port = /dev/ttyACM0
+    port = <replace with current active serial port>
 
     # Set frequency to 867.2 MHz
     frequency = 867200000
@@ -136,7 +136,7 @@
     bandwidth = 500000
 
     # Set TX power to 7 dBm (5 mW)
-    txpower = 1
+    txpower = 20
 
     # Select spreading factor 8. Valid 
     # range is 7 through 12, with 7

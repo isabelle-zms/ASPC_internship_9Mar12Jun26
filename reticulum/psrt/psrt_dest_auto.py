@@ -13,6 +13,7 @@ import RNS
 import json
 import csv
 import random
+import tqdm
 from google.protobuf.json_format import ParseDict
 import bridpacket_ts_pb2
 
@@ -21,8 +22,7 @@ import bridpacket_ts_pb2
 # is part of a range of example utilities, we'll put
 # them all within the app namespace "example_utilities"
 APP_NAME = "reticulum_test"
-with open('bridpackets_ts.json', 'r') as f:
-    PAYLOAD_DATA_NO_TS_ID = json.load(f)
+AYLOAD_DATA_NO_TS_ID = json.load(open('bridpackets_ts.json', 'r'))
 FIELDNAMES = [
     "packet_id",
     "rssi_dbm",
@@ -30,6 +30,7 @@ FIELDNAMES = [
     "tx_time",
     "rx_time",
 ]
+MAGIC = b'BRID'
 
 
 ##########################################################
@@ -105,13 +106,14 @@ def server_loop(destination):
 def server_packet_received(message, packet):
     global csv_file; global writer
     rx_time = time.time()
-    try: 
+    if message.startswith(MAGIC):
         packet_pb = bridpacket_ts_pb2.Packet()
-        packet_pb.ParseFromString(message)  
-    except:
-        return
-    log_packet(packet_pb, packet, rx_time, csv_file, writer)
-    print(f"[INFO] BRID packet received and logged to CSV file")
+        try:
+            packet_pb.ParseFromString(message[len(MAGIC):])
+            log_packet(packet_pb, packet, rx_time, csv_file, writer)
+            print(f"[INFO] BRID packet received and logged to CSV file.")
+        except Exception as e:
+            print("Failed to parse protobuf:", e) 
 
 
 def log_packet(brid_packet, reticulum_packet, rx_time, csv_file, writer):
@@ -134,7 +136,7 @@ def log_packet(brid_packet, reticulum_packet, rx_time, csv_file, writer):
 
 # This initialisation is executed when the users chooses
 # to run as a client
-def client(destination_hexhash, configpath, interval):
+def client(destination_hexhash, configpath, interval, num_packets):
     # We need a binary representation of the destination
     # hash that was entered on the command line
     try:
@@ -177,20 +179,16 @@ def client(destination_hexhash, configpath, interval):
 
     # Everything is set up, so let's enter a loop
     # for the user to interact with the example
-    client_loop(server_destination, interval)
+    client_loop(server_destination, interval, num_packets)
 
 
-def client_loop(destination, interval):
+def client_loop(destination, interval, num_packets):
 
     RNS.log(f"Starting transmission of BRID packets at {interval}s intervals (Ctrl+C to quit)")
-    packet_count = 1
-    while True:
-        try:
-            RNS.Packet(destination, generate_brid_packet_ts(packet_count)).send()
-            packet_count += 1
-            time.sleep(interval)
-        except KeyboardInterrupt:
-            RNS.log("Closing interface.")
+    for i in tqdm(range(num_packets)):
+        packet_with_magic = MAGIC + generate_brid_packet_ts(i+1)
+        RNS.Packet(destination, packet_with_magic).send()
+        time.sleep(interval)
 
 
 def generate_brid_packet_ts(packet_id: int) -> bytes:
@@ -224,6 +222,14 @@ if __name__ == "__main__":
         )
 
         parser.add_argument(
+            "--config",
+            action="store",
+            default=None,
+            help="path to alternative Reticulum config directory",
+            type=str
+        )
+
+        parser.add_argument(
             "--csv_file",
             action="store",
             default='brid_packets_reticulum.csv',
@@ -240,11 +246,11 @@ if __name__ == "__main__":
         )
 
         parser.add_argument(
-            "--config",
+            "--num_packets",
             action="store",
-            default=None,
-            help="path to alternative Reticulum config directory",
-            type=str
+            default=100,
+            help="Number of BRID packets to send",
+            type=int
         )
 
         parser.add_argument(
@@ -257,21 +263,14 @@ if __name__ == "__main__":
 
         args = parser.parse_args()
 
-        if args.config:
-            configarg = args.config
-        else:
-            configarg = None
-
         if args.server:
             csv_file_path = args.csv_file
-            server(configarg)
+            server(args.config)
         else:
             if (args.destination == None):
-                print("")
                 parser.print_help()
-                print("")
             else:
-                client(args.destination, configarg, args.interval)
+                client(args.destination, args.config, args.interval, args.num_packets)
 
     except KeyboardInterrupt:
         print("")

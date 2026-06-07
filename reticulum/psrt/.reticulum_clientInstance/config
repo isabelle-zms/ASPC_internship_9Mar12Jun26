@@ -127,7 +127,7 @@
     enabled = Yes
 
     # Serial port for the device
-    port = /dev/ttyACM1
+    port = <replace>
 
     # Set frequency to 867.2 MHz
     frequency = 867200000

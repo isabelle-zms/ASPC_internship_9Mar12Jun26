@@ -46,7 +46,7 @@ def send_packet_with_retransmission(dest, payload, attempts=RETRANSMISSION_ATTEM
 
 
 def start_node(configpath, identitiespath, target_hash):
-    reticulum = RNS.Reticulum(configpath)
+    reticulum = RNS.Reticulum(".reticulum_startInstance")
     start_identity = RNS.Identity.from_file("startIdentity")
     start_dest = RNS.Destination(
         start_identity,
@@ -129,8 +129,9 @@ def map_transport_hexhashes_to_identities(identitiespath):
     """Map each transport hexhash to path of identity file (relative to CWD)"""
     transport_to_identity = {}
     for i_set in os.listdir(identitiespath):
-        transport_hexhash = RNS.Identity.from_file(os.path.join(identitiespath, i_set, "transport_identity")).hash.hex()
-        transport_to_identity.update({transport_hexhash: os.path.join(identitiespath, i_set, "identity")})
+        if i_set != ".DS_Store":
+            transport_hexhash = RNS.Identity.from_file(os.path.join(identitiespath, i_set, "transport_identity")).hash.hex()
+            transport_to_identity.update({transport_hexhash: os.path.join(identitiespath, i_set, "identity")})
     return transport_to_identity
 
 
@@ -217,7 +218,7 @@ def query_handler(message, packet):
 
 
 def end_node(configpath):
-    reticulum = RNS.Reticulum(configpath)
+    reticulum = RNS.Reticulum(".reticulum_endInstance")
     target_identity = RNS.Identity.from_file("endIdentity")
     target_destination = RNS.Destination(
         target_identity,
