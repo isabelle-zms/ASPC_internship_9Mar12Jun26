@@ -6,6 +6,14 @@ This folder contains scripts, setup notes, and experiments related to using Reti
 
 Refer to our [Google Docs](https://docs.google.com/document/d/1JltWomsxRBIPiLrJyV6v5tv5WKGQFqe1Y2CG1Pps34o/edit?usp=sharing) for more detailed information regarding Reticulum, setup, and troubleshooting.
 
+## Contents
+
+- psrt
+- pathfinder
+- instance_identity_generator.py
+- docs
+- sandbox
+
 ## Tested Environment
 
 The setup and scripts in this folder were tested using:
