@@ -10,14 +10,14 @@ This folder contains early experiments with Protocol Buffers.
 
 This project already contains generated protobuf files. Install the protobuf compiler (aka protoc) only if regenerating _pb2.py files
 
-### Dependencies
+### Dependencies & Test Environment
 - Python: 3.10.12
 - protobuf: 7.35.0
 - protoc: 34.1 (optional)
 
 ### Installation
 
-Create virtual environment and activate it (optional)
+Create virtual environment and activate it (recommended)
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
