@@ -1,5 +1,6 @@
 # Evaluation of Meshtastic vs Reticulum for Data Transmission
 Interns: Amanda, Isabelle
+
 Internship period: 9 March 2026 - 12 June 2026
 
 ## Overview
