@@ -20,16 +20,17 @@ pathfinder/
 │   │   └── transport_identity
 │   ├── ... (more sets)
 │      
-└── packages/
-    ├── requirements.txt
-    ├── package1/
-    │   ├── README.txt
-    │   ├── main-v2.2.py
-    │   ├── id.txt
-    │   ├── identity
-    │   └── startIdentity
-    ├── ... (more packages)    
-
+├── packages/
+│   ├── requirements.txt
+│   ├── package1/
+│   │   ├── README.txt
+│   │   ├── main-v2.2.py
+│   │   ├── id.txt
+│   │   ├── identity
+│   │   └── startIdentity
+│   ├── ... (more packages)    
+│
+└── legacy/
 ```
 `pathfinder/`: to be downloaded on start and end node
 
@@ -40,6 +41,8 @@ pathfinder/
 `v2-identities/`: Collection of identity and transport identities of intermediate nodes
 
 `packages/`: Collection of directories to be downloaded on each intermediate node (i.e., 1 node 1 package)
+
+`legacy`: Collection of previous versions of the pathfinder (with varying inner workings...)
 
 ---
 
