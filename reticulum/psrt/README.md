@@ -9,7 +9,7 @@ A Reticulum Network Stack (RNS) utility for measuring packet success rate (i.e.,
 ```
 psrt/
 ├── README.md
-├── multinode_test.py        # Main script (client + server modes)
+├── main.py        # Main script (client + server modes)
 ├── bridpackets_ts.json      # Payload templates (without timestamps/IDs)
 ├── bridpacket_ts_pb2.py     # Compiled protobuf bindings for Packet message
 ├── bridpacket_ts.proto      # Protobuf schema (source)
@@ -76,8 +76,8 @@ python main.py <destination_hash> \
 
 ```bash
 # Node A — server
-python multinode_test.py -s --csv_file results.csv
+python multinode_test.py -s --config .reticulum_serverInstance --csv_file results.csv
 
 # Node B — client (replace hash with actual server destination hash)
-python multinode_test.py a1b2c3d4e5f6a1b2 --interval 2 --num_packets 50
+python multinode_test.py a1b2c3d4e5f6a1b2 --config .reticulum_clientInstance --interval 2 --num_packets 50
 ```
