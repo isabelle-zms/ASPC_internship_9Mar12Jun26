@@ -6,10 +6,6 @@ import argparse
 import os
 
 
-# make package for transport node
-# check receipt status works?
-
-
 APP_NAME = "pathfinder"
 WORKING_DIR = ""
 RETRANSMISSION_ATTEMPTS = 3
@@ -46,8 +42,8 @@ def send_packet_with_retransmission(dest, payload, attempts=RETRANSMISSION_ATTEM
 
 
 def start_node(configpath, identitiespath, target_hash):
-    reticulum = RNS.Reticulum(configpath)
-    start_identity = RNS.Identity.from_file("identity2")
+    reticulum = RNS.Reticulum(".reticulum_startInstance")
+    start_identity = RNS.Identity.from_file("startIdentity")
     start_dest = RNS.Destination(
         start_identity,
         RNS.Destination.IN,
@@ -55,7 +51,7 @@ def start_node(configpath, identitiespath, target_hash):
         APP_NAME,
     )
     start_dest.set_proof_strategy(RNS.Destination.PROVE_ALL)
-    RNS.log(f"START node {start_dest.hash.hex()} running.")
+    RNS.log(f"START node {start_dest.hash.hex()} | {RNS.Transport.identity.hash.hex()} running.")
     path = ["START", ]
     transport_hex_to_identity = map_transport_hexhashes_to_identities(identitiespath)
   
@@ -129,8 +125,9 @@ def map_transport_hexhashes_to_identities(identitiespath):
     """Map each transport hexhash to path of identity file (relative to CWD)"""
     transport_to_identity = {}
     for i_set in os.listdir(identitiespath):
-        transport_hexhash = RNS.Identity.from_file(os.path.join(identitiespath, i_set, "transport_identity")).hash.hex()
-        transport_to_identity.update({transport_hexhash: os.path.join(identitiespath, i_set, "identity")})
+        if i_set != ".DS_Store": # for Macbooks
+            transport_hexhash = RNS.Identity.from_file(os.path.join(identitiespath, i_set, "transport_identity")).hash.hex()
+            transport_to_identity.update({transport_hexhash: os.path.join(identitiespath, i_set, "identity")})
     return transport_to_identity
 
 
@@ -142,17 +139,6 @@ def pathfinder_end_results(path, ts):
 Time taken: {time.time() - ts}
 *****************************
 """)
-
-
-# Utility for testing
-def send_hello_to_dest(dest_h):
-    dest = RNS.Destination(
-        RNS.Identity.recall(dest_h),
-        RNS.Destination.OUT,
-        RNS.Destination.SINGLE,
-        APP_NAME,
-    )
-    RNS.Packet(dest, "hello".encode('utf-8')).send()
 
 
 ###########################################
@@ -217,8 +203,8 @@ def query_handler(message, packet):
 
 
 def end_node(configpath):
-    reticulum = RNS.Reticulum(configpath)
-    target_identity = RNS.Identity.from_file("identity1")
+    reticulum = RNS.Reticulum(".reticulum_endInstance")
+    target_identity = RNS.Identity.from_file("endIdentity")
     target_destination = RNS.Destination(
         target_identity,
         RNS.Destination.IN,

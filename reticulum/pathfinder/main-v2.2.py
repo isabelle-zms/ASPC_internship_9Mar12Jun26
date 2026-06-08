@@ -6,10 +6,6 @@ import argparse
 import os
 
 
-# make package for transport node
-# check receipt status works?
-
-
 APP_NAME = "pathfinder"
 WORKING_DIR = ""
 RETRANSMISSION_ATTEMPTS = 3
@@ -129,7 +125,7 @@ def map_transport_hexhashes_to_identities(identitiespath):
     """Map each transport hexhash to path of identity file (relative to CWD)"""
     transport_to_identity = {}
     for i_set in os.listdir(identitiespath):
-        if i_set != ".DS_Store":
+        if i_set != ".DS_Store": # for Macbooks
             transport_hexhash = RNS.Identity.from_file(os.path.join(identitiespath, i_set, "transport_identity")).hash.hex()
             transport_to_identity.update({transport_hexhash: os.path.join(identitiespath, i_set, "identity")})
     return transport_to_identity
@@ -145,17 +141,6 @@ Time taken: {time.time() - ts}
 """)
 
 
-# Utility for testing
-def send_hello_to_dest(dest_h):
-    dest = RNS.Destination(
-        RNS.Identity.recall(dest_h),
-        RNS.Destination.OUT,
-        RNS.Destination.SINGLE,
-        APP_NAME,
-    )
-    RNS.Packet(dest, "hello".encode('utf-8')).send()
-
-
 ###########################################
 #### INTERMEDIATE (TRANSPORT) #############
 ###########################################
@@ -165,7 +150,7 @@ def send_hello_to_dest(dest_h):
 def intermediate_node(configpath):
     global identity
     reticulum = RNS.Reticulum(configpath)
-    identity = RNS.Identity.from_file("identity")
+    identity = RNS.Identity.from_file("/opt/rns_pathfinder/package3/identity")
     transport_destination = RNS.Destination(
         identity,
         RNS.Destination.IN,
@@ -191,13 +176,13 @@ def query_handler(message, packet):
      
         if find_path_has_path(target_hash):
             next_hop = RNS.Transport.next_hop(target_hash)
-            node_id = next(open("id.txt")).strip()
+            node_id = next(open("/opt/rns_pathfinder/package3/id.txt")).strip()
             return_payload = {
                 "id": node_id,
                 "nh_ihh": next_hop.hex(),
             }
             # recalling identity doesn't seem to work
-            sender_identity = RNS.Identity.from_file("../identity2")
+            sender_identity = RNS.Identity.from_file("/opt/rns_pathfinder/package3/startIdentity")
             sender_dest = RNS.Destination(
                 sender_identity,
                 RNS.Destination.OUT,
