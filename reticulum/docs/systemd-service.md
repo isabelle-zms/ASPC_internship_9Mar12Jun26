@@ -17,6 +17,7 @@ Paste the following configuration, editing the fields marked with `< >` to match
 ```ini
 [Unit]
 Description=Reticulum Transport Node
+
 Requires=dev-ttyACM0.device
 After=dev-ttyACM0.device
 
@@ -24,8 +25,7 @@ After=dev-ttyACM0.device
 Type=simple
 User=<user>
 WorkingDirectory=/opt/rns_pathfinder/package<num>
-ExecStart=/opt/rns_pathfinder/.venv/bin/python3 /opt/rns_pathfinder/package<num>/main-v2.2.py \
-    -t -c /opt/rns_pathfinder/package<num>/.reticulum_transportInstance
+ExecStart=/opt/rns_pathfinder/.venv/bin/python3 /opt/rns_pathfinder/package<num>/main-v2.2.py -t -c /opt/rns_pathfinder/package<num>/.reticulum_transportInstance
 Restart=always
 RestartSec=5
 
