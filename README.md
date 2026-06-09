@@ -39,4 +39,14 @@ The full comparative analysis, methodology, and results are documented in our [i
 ## Audio Data Collection for Acoustic Drone Detection
 Collection of scripts and samples for the future development of an acoustics based drone detector.
 
+## Other Tasks
+Not included in this repo. Can be found in our [Google Drive folder](https://drive.google.com/drive/folders/1LHXuSWY_SENn9mCLYkU4nrk7pCBYPJd9?usp=share_link).
+
+### Vector Network Analyser (VNA)
+Explored the use of a VNA. Picked up related concepts such as impedance, S parameters, VSWR. Used the LiteVNA-64 to measure the S11, SWR and impedance of various antennas around the office. Measurements can be found [here](https://docs.google.com/spreadsheets/d/103Whadzx_50aWbKvtKXVo7ni8isa0EALrPEQ06344X8/edit?usp=sharing).
+
+### Research on Evolution of Drone Technology and Interceptor Drones
+Conducted brief research on the improvements of drone technology over the years. Additionally, summarised the recent interceptor drone models, generalising the prominent form factors and potential developments. Slides can be found [here](https://drive.google.com/drive/folders/161BoR6qGMTu0a-nFHKk7SIjMiQSpGYZg?usp=drive_link).
+
+
 
