@@ -79,17 +79,17 @@ A passive listener that simply logs received packets. Its destination hash is th
 
 End node (run first, note the destination hash)
 ```bash
-python pathfinder.py -e -c /path/to/rns/config
+python3 main_v2.2.py -e -c /path/to/rns/config
 ```
 
 Intermediate nodes (one per transport hop)
 ```bash
-python pathfinder.py -t -c /path/to/rns/config
+python3 main_v2.2.py -t -c /path/to/rns/config
 ```
 
 Start node
 ```bash
-python pathfinder.py -s -c /path/to/rns/config -i /path/to/identities/ -d <target_hex_hash>
+python3 main_v2.2.py -s -c /path/to/rns/config -i /path/to/identities/ -d <target_hex_hash>
 ```
 ---
 

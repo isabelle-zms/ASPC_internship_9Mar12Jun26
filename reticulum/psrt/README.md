@@ -76,8 +76,8 @@ python main.py <destination_hash> \
 
 ```bash
 # Node A — server
-python multinode_test.py -s --config .reticulum_serverInstance --csv_file results.csv
+python3 main.py -s --config .reticulum_serverInstance --csv_file brid_packets_reticulum.csv
 
 # Node B — client (replace hash with actual server destination hash)
-python multinode_test.py a1b2c3d4e5f6a1b2 --config .reticulum_clientInstance --interval 2 --num_packets 50
+python3 main.py a1b2c3d4e5f6a1b2 --config .reticulum_clientInstance --interval 1 --num_packets 400
 ```

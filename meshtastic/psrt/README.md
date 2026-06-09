@@ -50,7 +50,7 @@ The server subscribes to incoming data packets. On receipt, it checks for the `B
 Start the receiver on the listening node. Logs incoming BRID packets to CSV. Press **Enter** to reset the running packet count; **Ctrl+C** to exit.
 
 ```bash
-python3 psrt_manual_auto.py -p /dev/ttyACM0 -f brid_packets_meshtastic.csv
+python3 main_v2.2.py -p /dev/ttyACM0 -f brid_packets_meshtastic.csv
 ```
 
 Monitor the CSV live in a separate terminal:
@@ -62,19 +62,19 @@ tail -f brid_packets_meshtastic.csv
 Send `n` packets to the server at a fixed interval.
 
 ```bash
-python3 psrt_manual_auto.py -c -p /dev/ttyACM1 -a -i <interval_s> -n <num_packets> <server_node_id>
+python3 main_v2.2.py -c -p /dev/ttyACM1 -a -i <interval_s> -n <num_packets> <server_node_id>
 ```
 
-Example — 100 packets, 3-second interval:
+Example — 400 packets, 1-second interval:
 ```bash
-python3 psrt_manual_auto.py -c -p /dev/ttyACM1 -a -i 3 -n 100 '!435a0bf4'
+python3 main_v2.2.py -c -p /dev/ttyACM1 -a -i 1 -n 400 '!435a0bf4'
 ```
 
 ### Client — Manual mode
 Send packets interactively. Press **Enter** to send one random BRID packet; type any text to send it as raw UTF-8; type `quit` to exit.
 
 ```bash
-python3 psrt_manual_auto.py -c -p /dev/ttyACM1 '!435a0bf4'
+python3 main_v2.2.py -c -p /dev/ttyACM1 '!435a0bf4'
 ```
 
 ### Full argument reference
