@@ -30,6 +30,7 @@ A potential application is integration with current (B-RID) drone detectors to p
 | Item | Quantity |
 |---|---|
 |LilyGo T-Beam Supreme</br>- LoRa Board</br>- Antenna|10|
+|18650 battery|10|
 |Heltec V4</br>- LoRa Board</br>- PL103665 LiPo Battery</br>- Antenna</br>- Casing|10|
 
 ### Documentation
