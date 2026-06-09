@@ -13,7 +13,7 @@ import RNS
 import json
 import csv
 import random
-import tqdm
+from tqdm import tqdm
 from google.protobuf.json_format import ParseDict
 import bridpacket_ts_pb2
 
@@ -22,7 +22,7 @@ import bridpacket_ts_pb2
 # is part of a range of example utilities, we'll put
 # them all within the app namespace "example_utilities"
 APP_NAME = "reticulum_test"
-AYLOAD_DATA_NO_TS_ID = json.load(open('bridpackets_ts.json', 'r'))
+PAYLOAD_DATA_NO_TS_ID = json.load(open('bridpackets_ts.json', 'r'))
 FIELDNAMES = [
     "packet_id",
     "rssi_dbm",
