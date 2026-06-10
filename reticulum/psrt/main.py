@@ -27,6 +27,7 @@ FIELDNAMES = [
     "packet_id",
     "rssi_dbm",
     "snr_db",
+    "link_quality",
     "tx_time",
     "rx_time",
 ]
@@ -122,8 +123,9 @@ def log_packet(brid_packet, reticulum_packet, rx_time, csv_file, writer):
         "packet_id": brid_packet.packet_id,
         "rssi_dbm": reticulum_packet.get_rssi(),
         "snr_db": reticulum_packet.get_snr(),
+        "link_quality": reticulum_packet.get_q(),
         "tx_time": brid_packet.timestamp,
-        "rx_time":rx_time,
+        "rx_time": rx_time,
     }
     writer.writerow(row)
     csv_file.flush() 
