@@ -127,7 +127,7 @@
     enabled = Yes
 
     # Serial port for the device
-    port = <replace with current active serial port>
+    port = /dev/cu.usbmodem101
 
     # Set frequency to 867.2 MHz
     frequency = 867200000
