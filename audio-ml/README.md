@@ -5,7 +5,7 @@
 ```text
 audio-ml
 ├── dataset
-│   ├── raw
+│   ├── raw                # audio durations range from 2s to 300s
 │   │   ├── drone
 │   │   └── nond
 │   ├── processed          # left empty as a container for processed scripts
@@ -13,7 +13,7 @@ audio-ml
 │   │   └── nond
 │
 ├── scripts
-│   └── preprocessing.py   # auto resample, convert to mono, split into chunks
+│   └── preprocessing.py   # auto resample, convert to mono, split into chunks of specified duration & overlap
 │
 └── sandbox                # experimental scripts on audio processing, not relevant
     ├── ...
